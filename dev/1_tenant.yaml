@@ -1,0 +1,43 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    toolkit.fluxcd.io/tenant: fluxdemo-dev
+  name: fluxdemo-dev
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    toolkit.fluxcd.io/tenant: fluxdemo-dev
+  name: fluxdemo-dev
+  namespace: fluxdemo-dev
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    toolkit.fluxcd.io/tenant: fluxdemo-dev
+  name: fluxdemo-dev-reconciler
+  namespace: fluxdemo-dev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: gotk:fluxdemo-dev:reconciler
+- kind: ServiceAccount
+  name: fluxdemo-dev
+  namespace: fluxdemo-dev
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: dev
+  namespace: fluxdemo-dev
+  annotations:
+    kubernetes.io/service-account.name: fluxdemo-dev
+type: kubernetes.io/service-account-token

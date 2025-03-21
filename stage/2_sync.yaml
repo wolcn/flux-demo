@@ -1,0 +1,25 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: flux-stage-prod
+  namespace: fluxdemo-stage
+spec:
+  interval: 1m0s
+  ref:
+    branch: main
+  url: https://github.com/wolcn/flux-stage-prod
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: flux-stage-prod
+  namespace: fluxdemo-stage
+spec:
+  interval: 1m0s
+  path: ./stage
+  prune: true
+  serviceAccountName: fluxdemo-stage
+  sourceRef:
+    kind: GitRepository
+    name: flux-stage-prod
