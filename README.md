@@ -1,5 +1,7 @@
 ## Flux operator and controllers
 
+A simple demo stack for the Flux Kubernetes Operator
+
 Ref: [Flux operator site](https://fluxcd.control-plane.io/operator/)    
 Ref: [Flux Operator installation](https://fluxcd.control-plane.io/operator/install/)    
 Ref: [Flux Controller configuration](https://fluxcd.control-plane.io/operator/flux-config/)    
