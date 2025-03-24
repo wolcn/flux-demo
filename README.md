@@ -48,7 +48,7 @@ This demo includes three public GitHub repos; this one with simple documentation
 
 ## Applying the demo files
 
-Once the operator and controllers are installed on the cluster, the tenants and syncs from this can be installed. The can currently be found in the sub directories `dev`, `stage` and `prod` in this repo. Because the tenant manifest needs to be applied prior to the sync manifest, I have prefixed the file names with `1_` and `2_` to ensure they get deployed in the right order when running the command `kubectl apply -f .`.
+Once the operator and controllers are installed on the cluster, the tenants and syncs from this can be installed. The can currently be found in the sub directories `dev`, `stage` and `prod` in this repo. Because the tenant manifest needs to be applied prior to the sync manifest, I have prefixed the file names with `1_` and `2_` to ensure they get deployed in the right order when running the command `kubectl apply -f .`
 
 Once the sync is applied, it should only take a couple of minutes or so for the demo pods to appear in the appropriate namespaces.
 
