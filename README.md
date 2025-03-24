@@ -19,7 +19,7 @@ The controllers:
 ```
 helm -n flux-system install flux oci://ghcr.io/controlplaneio-fluxcd/charts/flux-instance \
   --set instance.cluster.multitenant=true \
-  --set instance.cluster.type=kubernetes # replace with aws for eks
+  --set instance.cluster.type=kubernetes # replace with 'aws' for eks
 ```
 
 ## Demo/test
@@ -52,7 +52,7 @@ Once the sync is applied, it should only take a couple of minutes or so for the 
 
 Things to be checked when trouble shooting are the status of the sync objects, which in this case are `gitrepository` objects. Do this with:
 ```
-kubectl get gitrepository -A`
+kubectl get gitrepository -A
 ```
 Check the logs of the operator and controller pods, and, if you have the flux cli installed, the flux logs with:
 ```
