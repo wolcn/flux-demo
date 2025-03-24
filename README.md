@@ -4,7 +4,7 @@ Ref: [Flux operator site](https://fluxcd.control-plane.io/operator/)
 Ref: [Flux Operator installation](https://fluxcd.control-plane.io/operator/install/)    
 Ref: [Flux Controller configuration](https://fluxcd.control-plane.io/operator/flux-config/)    
 
-I install these in the project pipeline with the **Terraform** Helm operator, but simplest for a lab cluster is just to use Helm. Default settings are good enough for lab work.
+I install these in the project cluster using a pipeline with the **Terraform** Helm operator, but simplest for a lab cluster is just to use Helm. Default settings are mostly enough for lab work; multi-tenancy needs to be enabled (off by default) and the type of cluster needs to be set to `aws` if deploying on `EKS`. My initial cluster was a Kind cluster with three nodes and for that the  `instance.cluster.type` value is set to `kubernetes`.
 
 The operator:
 ```
@@ -61,7 +61,9 @@ flux logs -A
 
 ## Deploying application changes
 
-To experience the full GitOps experience you'll need to clone at least one of the scenario repos then update the sync details to point to your repo. Make the repo public so you don't need set up authentication and as the demo sync is configured to poll the repo every 60 seconds, it shouldn't take long before the demo application id deployed or you start seeing error messages. Once sync is active, you can change values in the demo application manifest and check what happens with the deployment generation value.
+To get started it's enough to install the operator as described above and apply the manifest files included in this repo for one or both of the scenarios. 
+
+But to experience the full GitOps experience you'll need to clone at least one of the scenario repos and update the sync details to point to your repo. Make the repo public so you don't need set up authentication and as the demo sync is configured to poll the repo every 60 seconds, it shouldn't take long before the demo application is deployed or you start seeing error messages. Once sync is active, you can change values in the demo application manifest and check what happens with the deployment generation value.
 
 If you have `yq` installed locally, checking the current deployment generation in for example the `fluxdemo-dev` namespace is fairly simple:
 ```
@@ -72,12 +74,12 @@ Simplest though is to change the number of replicas.
 
 ## The demo application
 
-The demo app `kcheck` is a quick hack I wrote a few years ago when I was playing around with **Rust**; it does what I want it to. It checks the values of a couple of environmental variables and serves a simple web page that changes slightly according to the values of those variables (information about the variables is included in the manifest file). The web server is exposed as a ClusterIP service for this demo; normally I install MetalLB in my local clusters so I can use a LoadBalancer service and access the web page without having to do any port forwarding.
+The demo app `kcheck` is a quick hack I wrote a few years ago when I was playing around with **Rust**; it does what I want it to. It checks the values of a couple of environmental variables and serves a simple web page that changes slightly according to the values of those variables (information about the variables is included in the manifest file). The web server is exposed as a ClusterIP service for this demo; normally I install MetalLB in my local clusters (both Kind and bare metal) so I can use a LoadBalancer service to access the web page without having to do any port forwarding.
 
 
 ## Multi-tenancy
 
-Seems to work; when I check in changes that would result in changes being applied outside of a tenant's specified namespace, nothing happens.
+Seems to work; when I check in changes that would result in changes being applied outside of a tenant's specified namespace, nothing happens. To be investigated further.
 
 
 
