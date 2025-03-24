@@ -58,7 +58,7 @@ Things to be checked when troubleshooting are the status of the sync objects, wh
 ```
 kubectl get gitrepository -A
 ```
-Check the logs of the operator and controller pods, and, if you have the flux cli installed, the flux logs with:
+Check the logs of the operator and controller pods, and, if you have the Flux cli installed, the Flux logs with:
 ```
 flux logs -A
 ```
@@ -67,7 +67,7 @@ flux logs -A
 
 To get started it's enough to install the operator as described above and apply the manifest files included in this repo for one or both of the scenarios. 
 
-But to experience the full GitOps experience you'll need to clone at least one of the scenario repos and update the sync details to point to your own repo. If you make the repo public, you won't need set up authentication and as the demo sync is configured to poll the repo every 60 seconds it shouldn't take long before the demo application is deployed or you start seeing error messages. Once sync is active, you can change values in the demo application manifest and check what happens with the deployment generation value. The webpage can reloaded also, if you have configured access to the service endpoint.
+But to experience the full GitOps experience you'll need to clone at least one of the scenario repos and update the sync details to point to your own repo. If you make the repo public, you won't need set up authentication and as the demo sync is configured to poll the repo every 60 seconds it shouldn't take long before the demo application is deployed or you start seeing error messages. Once sync is active, you can change values in the demo application manifest and check what happens with the deployment generation value. The web page can reloaded also, if you have configured access to the service endpoint.
 
 If you have `yq` installed locally, checking the current deployment generation in for example the `fluxdemo-dev` namespace is fairly simple:
 ```
@@ -91,7 +91,7 @@ I've enabled pruning in the sync definitions, but haven't got it to work like I 
 
 ### Logs
 
-The flux cli used as described above gets me the logs I've needed so far. It is quite flexible, but is described as *in preview and under development* so probably should only be used manually at this stage.
+The Flux cli used as described above gets me the logs I've needed so far. It is quite flexible, but is described as *in preview and under development* so probably should only be used manually at this stage.
 
 [flux logs](https://fluxcd.io/flux/cmd/flux_logs/)
 
