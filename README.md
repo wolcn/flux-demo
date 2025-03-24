@@ -79,9 +79,19 @@ Simplest is to change the number of replicas and check for that.
 The demo app `kcheck` is a quick hack I wrote a few years ago when I was playing around with **Rust**; it does what I want it to. It checks the values of a couple of environmental variables and serves a simple web page that changes slightly according to the values of those variables (information about the variables is included in the manifest file). The web server is exposed as a ClusterIP service for this demo; normally I install MetalLB in my local clusters (both Kind and bare metal) so I can use a LoadBalancer service to access the web page without having to do any port forwarding.
 
 
-## Multi-tenancy
+### Multi-tenancy
 
 Seems to work; when I check in changes that would result in changes being applied outside of a tenant's specified namespace, nothing happens. Needs to be investigated further though.
+
+### Pruning
+
+I've enabled pruning in the sync definitions, but haven't got it to work like I expect it to; probably I've missed something.
+
+### Logs
+
+The flux cli used as described above gets me the logs I've needed so far. It is quite flexible, but is described as *in preview and under development* so probably should only be used manually at this stage.
+
+[flux logs](https://fluxcd.io/flux/cmd/flux_logs/)
 
 
 
