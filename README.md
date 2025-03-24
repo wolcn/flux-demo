@@ -4,7 +4,7 @@ Ref: [Flux operator site](https://fluxcd.control-plane.io/operator/)
 Ref: [Flux Operator installation](https://fluxcd.control-plane.io/operator/install/)    
 Ref: [Flux Controller configuration](https://fluxcd.control-plane.io/operator/flux-config/)    
 
-I install these with the Agave pipeline the **Terraform** Helm operator, but simplest for a lab cluster is just to use Helm. Default is good enough for lab work.
+I install these in the project pipeline with the **Terraform** Helm operator, but simplest for a lab cluster is just to use Helm. Default settings are good enough for lab work.
 
 The operator:
 ```
@@ -36,7 +36,7 @@ The two scenarios are of a one-to-one one git repo to one namespace and a one-to
 
 Scenario one uses the `dev` namespace, while scenario two uses the `stage` and `prod` namespaces. These names are purely arbitrary and reused in different places in the code; mostly there is no significance.
 
-The manifest files were generated using the Flux cli tool; it is not a requirement for using Flux, but it is very useful.
+The manifest files were generated using the Flux cli tool; it is not a requirement for using Flux as the operator, but it is very useful.
 
 ## Repositories
 This demo includes three public GitHub repos; this one with simple documentation and manifest files for setting up the GitOps sync plus repos with the two scenarios described above:
@@ -72,10 +72,12 @@ Simplest though is to change the number of replicas.
 
 ## The demo application
 
-The demo app `kcheck` is another quick hack I wrote a few years ago when I was playing around with **Rust**; it does what I want it to. It checks the values of a couple of environmental variables and serves a simple web page that changes slightly according to the values of those variables (information about the variables is included in the manifest file). The web server is exposed as a ClusterIP service; normally I install MetalLB in my local clusters so I can use a LoadBalancer service and access the web page without having to do any port forwarding.
+The demo app `kcheck` is a quick hack I wrote a few years ago when I was playing around with **Rust**; it does what I want it to. It checks the values of a couple of environmental variables and serves a simple web page that changes slightly according to the values of those variables (information about the variables is included in the manifest file). The web server is exposed as a ClusterIP service for this demo; normally I install MetalLB in my local clusters so I can use a LoadBalancer service and access the web page without having to do any port forwarding.
 
 
+## Multi-tenancy
 
+Seems to work; when I check in changes that would result in changes being applied outside of a tenant's specified namespace, nothing happens.
 
 
 
