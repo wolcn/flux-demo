@@ -32,7 +32,7 @@ The Flux stack in the demo is three tier and has two scenarios. The first tier i
 
 The Flux documentation refers to *bootstrapping* in various places; in the Flux operator context this appears to be included in the tenant and sync tiers.
 
-The two scenarios are of a one-to-one one git repo to one namespace and a one-to-many single git repo to two namespaces. Each namespace for the second scenario has its own tenant and sync. Other scenarios are possible, but haven't been tested.
+The two scenarios are of a one-to-one one git repo to one namespace/environment and a one-to-many single git repo to two namespaces/environments. Each namespace for the second scenario has its own tenant and sync. Other scenarios are possible, but haven't been tested.
 
 Scenario one uses the `dev` namespace, while scenario two uses the `stage` and `prod` namespaces. These names are purely arbitrary and reused in different places in the code; mostly there is no significance.
 
