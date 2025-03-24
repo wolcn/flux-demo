@@ -10,8 +10,8 @@ The operator:
 ```
 helm install flux-operator oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator \
   --namespace flux-system \
-  --create-namespace
-  --set multitenancy.enabled=true
+  --create-namespace \
+  --set multitenancy.enabled=true \
   --wait
 ```
 
