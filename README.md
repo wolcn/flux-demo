@@ -19,7 +19,7 @@ The controllers:
 ```
 helm -n flux-system install flux oci://ghcr.io/controlplaneio-fluxcd/charts/flux-instance \
   --set instance.cluster.multitenant=true \
-  --set instance.cluster.type=kubernetes # replace with 'aws' for eks
+  --set instance.cluster.type=kubernetes # replace with 'aws' for eks clusters
 ```
 
 ## Demo/test
