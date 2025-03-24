@@ -6,7 +6,7 @@ Ref: [Flux operator site](https://fluxcd.control-plane.io/operator/)
 Ref: [Flux Operator installation](https://fluxcd.control-plane.io/operator/install/)    
 Ref: [Flux Controller configuration](https://fluxcd.control-plane.io/operator/flux-config/)    
 
-I install the operator and controllers in the project cluster using a pipeline with the **Terraform** Helm operator, but simplest for a lab cluster is just to use Helm. Default settings are mostly enough for lab work; for this demo multi-tenancy needs to be enabled (off by default) and the type of cluster needs to be set to `aws` if deploying on `EKS`. My initial cluster was a Kind cluster with three nodes and for that the  `instance.cluster.type` value is set to `kubernetes`.
+I install the operator and controllers in the project cluster using a pipeline with the **Terraform** Helm operator, but simplest for a lab cluster is just to use Helm. Default settings are mostly enough for lab work; for this demo multi-tenancy needs to be enabled (off by default) and the type of cluster needs to be set to `aws` if deploying on **EKS**. My initial cluster was a Kind cluster with three nodes and for that the  `instance.cluster.type` value is set to `kubernetes`.
 
 The operator:
 ```
