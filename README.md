@@ -17,7 +17,7 @@ helm install flux-operator oci://ghcr.io/controlplaneio-fluxcd/charts/flux-opera
   --wait
 ```
 
-The operator pod can sometime take a few minutes to fully deploy; hence the `--wait`
+The operator pod can sometimes take a few minutes to fully deploy; hence the `--wait`
 
 The controllers:
 ```
