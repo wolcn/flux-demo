@@ -52,7 +52,7 @@ Once the operator and controllers are installed on the cluster, the tenants and 
 
 Once the sync is applied, it should only take a couple of minutes or so for the demo pods to appear in the appropriate namespaces.
 
-Things to be checked when trouble shooting are the status of the sync objects, which in this case are `gitrepository` objects. Do this with:
+Things to be checked when troubleshooting are the status of the sync objects, which in this case are `gitrepository` objects. Do this with:
 ```
 kubectl get gitrepository -A
 ```
