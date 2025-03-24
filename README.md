@@ -65,7 +65,7 @@ flux logs -A
 
 To get started it's enough to install the operator as described above and apply the manifest files included in this repo for one or both of the scenarios. 
 
-But to experience the full GitOps experience you'll need to clone at least one of the scenario repos and update the sync details to point to your repo. If you make the repo public, you won't need set up authentication and as the demo sync is configured to poll the repo every 60 seconds it shouldn't take long before the demo application is deployed or you start seeing error messages. Once sync is active, you can change values in the demo application manifest and check what happens with the deployment generation value. The webpage can reloaded also, if you have configured access to the service endpoint.
+But to experience the full GitOps experience you'll need to clone at least one of the scenario repos and update the sync details to point to your own repo. If you make the repo public, you won't need set up authentication and as the demo sync is configured to poll the repo every 60 seconds it shouldn't take long before the demo application is deployed or you start seeing error messages. Once sync is active, you can change values in the demo application manifest and check what happens with the deployment generation value. The webpage can reloaded also, if you have configured access to the service endpoint.
 
 If you have `yq` installed locally, checking the current deployment generation in for example the `fluxdemo-dev` namespace is fairly simple:
 ```
