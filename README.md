@@ -4,7 +4,7 @@ Ref: [Flux operator site](https://fluxcd.control-plane.io/operator/)
 Ref: [Flux Operator installation](https://fluxcd.control-plane.io/operator/install/)    
 Ref: [Flux Controller configuration](https://fluxcd.control-plane.io/operator/flux-config/)    
 
-I install these in the project cluster using a pipeline with the **Terraform** Helm operator, but simplest for a lab cluster is just to use Helm. Default settings are mostly enough for lab work; multi-tenancy needs to be enabled (off by default) and the type of cluster needs to be set to `aws` if deploying on `EKS`. My initial cluster was a Kind cluster with three nodes and for that the  `instance.cluster.type` value is set to `kubernetes`.
+I install these in the project cluster using a pipeline with the **Terraform** Helm operator, but simplest for a lab cluster is just to use Helm. Default settings are mostly enough for lab work; here multi-tenancy needs to be enabled (off by default) and the type of cluster needs to be set to `aws` if deploying on `EKS`. My initial cluster was a Kind cluster with three nodes and for that the  `instance.cluster.type` value is set to `kubernetes`.
 
 The operator:
 ```
@@ -26,7 +26,7 @@ helm -n flux-system install flux oci://ghcr.io/controlplaneio-fluxcd/charts/flux
 
 ## Demo/test
 
-This demo is slightly simplified compared with my original setup; I used private GitHub repos and PAT authentication, while for this version the repos have given public visibility and the authentication code has been removed from the manifest files. Given that the demo came to life as a verification tool it is essentially just a hack, but it also functions as an example.
+This demo is slightly simplified compared with my original setup; there I used private GitHub repos and PAT authentication, while for this version the repos have given public visibility and the authentication code has been removed from the manifest files. The demo came to life as a verification tool so it is essentially just a hack, but it has its uses as an example.
 
 Flux' documentation can be a little confusing as different terms are used for the same concepts and one term that is used for a Flux concept - `kustomization` - is more commonly used in a Kubernetes context for another concept. The term `sync` is also used by Flux for the same thing, which is what I use here.
 
@@ -65,14 +65,14 @@ flux logs -A
 
 To get started it's enough to install the operator as described above and apply the manifest files included in this repo for one or both of the scenarios. 
 
-But to experience the full GitOps experience you'll need to clone at least one of the scenario repos and update the sync details to point to your repo. Make the repo public so you don't need set up authentication and as the demo sync is configured to poll the repo every 60 seconds, it shouldn't take long before the demo application is deployed or you start seeing error messages. Once sync is active, you can change values in the demo application manifest and check what happens with the deployment generation value.
+But to experience the full GitOps experience you'll need to clone at least one of the scenario repos and update the sync details to point to your repo. If you make the repo public, you won't need set up authentication and as the demo sync is configured to poll the repo every 60 seconds it shouldn't take long before the demo application is deployed or you start seeing error messages. Once sync is active, you can change values in the demo application manifest and check what happens with the deployment generation value. The webpage can reloaded also, if you have configured access to the service endpoint.
 
 If you have `yq` installed locally, checking the current deployment generation in for example the `fluxdemo-dev` namespace is fairly simple:
 ```
 kubectl -n fluxdemo-dev get deploy kcheck -oyaml | yq .metadata.generation
 ```
 
-Simplest though is to change the number of replicas.
+Simplest is to change the number of replicas and check for that. 
 
 ## The demo application
 
@@ -81,7 +81,7 @@ The demo app `kcheck` is a quick hack I wrote a few years ago when I was playing
 
 ## Multi-tenancy
 
-Seems to work; when I check in changes that would result in changes being applied outside of a tenant's specified namespace, nothing happens. To be investigated further.
+Seems to work; when I check in changes that would result in changes being applied outside of a tenant's specified namespace, nothing happens. Needs to be investigated further though.
 
 
 
