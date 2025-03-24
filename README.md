@@ -15,6 +15,8 @@ helm install flux-operator oci://ghcr.io/controlplaneio-fluxcd/charts/flux-opera
   --wait
 ```
 
+The operator pod can sometime take a few minutes to fully deploy; hence the `--wait`
+
 The controllers:
 ```
 helm -n flux-system install flux oci://ghcr.io/controlplaneio-fluxcd/charts/flux-instance \
@@ -38,7 +40,7 @@ Scenario one uses the `dev` namespace, while scenario two uses the `stage` and `
 
 The manifest files were generated using the Flux cli tool; it is not a requirement for using Flux as the operator, but it is very useful.
 
-## Repositories
+## Scenario repos
 This demo includes three public GitHub repos; this one with simple documentation and manifest files for setting up the GitOps sync plus repos with the two scenarios described above:
 
 - [Scenario 1](https://github.com/wolcn/flux-dev)
