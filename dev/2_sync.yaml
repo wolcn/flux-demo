@@ -16,7 +16,7 @@ metadata:
   name: flux-dev
   namespace: fluxdemo-dev
 spec:
-  interval: 1m0s
+  interval: 30m0s
   path: ./dev
   prune: true
   serviceAccountName: fluxdemo-dev

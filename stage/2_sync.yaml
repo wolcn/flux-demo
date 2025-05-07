@@ -16,7 +16,7 @@ metadata:
   name: flux-stage-prod
   namespace: fluxdemo-stage
 spec:
-  interval: 1m0s
+  interval: 20m0s
   path: ./stage
   prune: true
   serviceAccountName: fluxdemo-stage
