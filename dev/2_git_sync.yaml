@@ -1,8 +1,9 @@
+# Points at a github repository with a single manifest with one environment, one namespace and one repo
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: flux-dev
+  name: git-demo-dev
   namespace: fluxdemo-dev
 spec:
   interval: 1m0s
@@ -13,7 +14,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: flux-dev
+  name: git-dev
   namespace: fluxdemo-dev
 spec:
   interval: 20m0s
@@ -22,4 +23,4 @@ spec:
   serviceAccountName: fluxdemo-dev
   sourceRef:
     kind: GitRepository
-    name: flux-dev
+    name: git-demo-dev
