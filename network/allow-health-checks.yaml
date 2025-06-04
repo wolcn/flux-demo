@@ -1,0 +1,32 @@
+# Required for compatibility between Istio service mesh and network policies
+# Without this policy the readiness and liveness probes fail
+# Port 15008 for ztunnel and the other ports for Flux probes
+# The IPv4 address block is documented; the IPv6 block was found by trial and error
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-health-checks
+  namespace: flux-system
+spec:
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: flux-system
+        - ipBlock:
+            cidr: 169.254.0.0/16
+        - ipBlock:
+            cidr: fd16:9254:7127:1337:ffff::/80
+      ports:
+        - port: 15008
+          protocol: TCP
+        - port: 9440
+          protocol: TCP
+        - port: 9090
+          protocol: TCP
+        - port: 8081
+          protocol: TCP
+  podSelector: {}
+  policyTypes:
+    - Ingress
