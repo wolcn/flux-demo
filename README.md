@@ -106,13 +106,13 @@ Not tested.
 
 The Flux cli used as described above gets me the logs I've needed so far. It is quite flexible, but is described as *in preview and under development* so probably should only be used manually at this stage.
 
-[flux logs](https://fluxcd.io/flux/cmd/flux_logs/)
+  - Flux logs cli [`flux logs`](https://fluxcd.io/flux/cmd/flux_logs/)
 
 ### OCI artifacts
 
-The container images used in this demo are stored as OCI artifacts in the Github Container Registry and best practice would be to do the same with the manifest packages for the various deployments. This would however reduce visibility of the code and therefore the pedagogical value of this demo package, so the manifests remain stored in old style Github repos.
+The container images used in this demo are stored as OCI artifacts in the Github Container Registry and best practice would be to do the same with the manifest packages for the various deployments. This would however reduce visibility of the code and therefore the pedagogical value of this demo package, so the manifests remain stored in old style Github repos where they can be read.
 
-Packaging the manifests into OCI artifacts has been tested though and worked as expected. 
+Packaging the manifests into OCI artifacts has been tested though and worked as expected. The Flux sync file - `3_oci_sync.yaml` - for this verification has been left in the [dev](./dev) folder in this repo.
 
 The Flux cli tool provides some useful capabilities for building and managing artifacts:
 
