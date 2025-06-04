@@ -28,6 +28,16 @@ helm -n flux-system install flux oci://ghcr.io/controlplaneio-fluxcd/charts/flux
   --set instance.cluster.type=kubernetes # replace with 'aws' for eks clusters
 ```
 
+**Important note**
+
+We have found that when using a service mesh (Istio in our case) in a Kubernetes cluster (EKS in this situation) where network policy support is enabled, health and readiness probes of the Flux operator and controller pods will no longer be accessible so deployment will fail.
+
+The reason for this is that the service mesh takes over network traffic and the IP range used by the mesh is not white-listed by any network policy and gets blocked. A network policy that allowed access to the ports used by the probes from the mesh IP address range solved the issue.
+
+A manifest file for the network policy is included in this repo in the folder [network](./network).
+
+There was very little information about this particular issue and what was there was somewhat confusing, so it's not clear how common it is and YMMV anyway. The solution given here worked in our situation and might not be a general solution, but should give some useful clues about solving the issue.
+
 ## Demo/test
 Start here if you already access to a lab cluster with the Flux operator installed.   
 
@@ -65,16 +75,6 @@ Check the logs of the operator and controller pods, and, if you have the Flux cl
 ```
 flux logs -A
 ```
-
-**Important note**
-
-We have found that when using a service mesh (Istio in our case) in a Kubernetes cluster where network policy support is enabled, health and readiness probes of the Flux operator and controller pods will no longer be accessible so deployment will fail.
-
-The reason for this is that the service mesh takes over network traffic and the IP range used by the mesh is not white-listed by any network policy and gets blocked. A network policy that allowed access to the ports used by the probes from the mesh IP address range solved the issue.
-
-A manifest file for the network policy is included in this repo in the folder [network](./network).
-
-There was very little information about this particular issue and what was there was somewhat confusing, so it's not clear how common it is and YMMV anyway. The solution given here worked in our situation and might not be a general solution, but should give some useful clues about solving the issue.
 
 ## Deploying application changes
 
