@@ -67,6 +67,7 @@ flux logs -A
 ```
 
 **Important note**
+
 We have found that when using a service mesh (Istio in our case) in a Kubernetes cluster where network policy support is enabled, health and readiness probes the Flux operator and controller pods will no longer be accessible and deployment will fail.
 
 The reason for this is that the service mesh takes over network traffic and the IP range used by the mesh is not white-listed by any network policy so gets blocked. A network policy that allowed access to the ports used by the probes from the mesh IP address range solved the issue.
