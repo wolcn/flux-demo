@@ -16,7 +16,6 @@ helm install flux-operator oci://ghcr.io/controlplaneio-fluxcd/charts/flux-opera
   --namespace flux-system \
   --create-namespace \
   --set multitenancy.enabled=true \
-  --set instance.cluster.type=kubernetes \
   --wait
 ```
 
