@@ -8,7 +8,7 @@ Ref: [Flux Controller configuration](https://fluxcd.control-plane.io/operator/fl
 
 This first section is relevant if you want to spin up your own cluster and Flux operator; if you already have access to a Kubernetes cluster with the operator installed, this section can be skipped.
 
-I install the operator and controllers in the project cluster using a pipeline with the **Terraform** Helm operator, but simplest for a lab cluster is just to use Helm from the command line. Default settings are mostly enough for lab work; for this demo multi-tenancy needs to be enabled (is disabled by default) and the type of cluster needs to be set to `aws` if deploying on **EKS**. My initial cluster was a Kind cluster with three nodes and for that the  `instance.cluster.type` value for the controller is set to `kubernetes`; otherwise EKS clusters hosted by AWS are what we use, in which case the value needs to be set to `aws`.
+I install the operator and controllers in the project cluster using a pipeline with the **Terraform** Helm operator, but simplest for a lab cluster is just to use Helm from the command line. Default settings are mostly enough for lab work; for this demo multi-tenancy needs to be enabled (is disabled by default) and the type of cluster needs to be set to `aws` if deploying on **EKS**. My initial cluster was a Kind cluster with three nodes and for that the  `instance.cluster.type` value for the controller is set to `kubernetes`; EKS clusters hosted by AWS are what we use, in which case the value needs to be set to `aws`.
 
 The operator:
 ```
