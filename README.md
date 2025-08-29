@@ -16,6 +16,7 @@ helm install flux-operator oci://ghcr.io/controlplaneio-fluxcd/charts/flux-opera
   --namespace flux-system \
   --create-namespace \
   --set multitenancy.enabled=true \
+  --set instance.cluster.type=kubernetes \
   --wait
 ```
 
@@ -119,11 +120,3 @@ The Flux cli tool provides some useful capabilities for building and managing ar
 
   - Build [`flux build artifact`](https://fluxcd.io/flux/cmd/flux_build_artifact/)
   - Push [`flux push artifact`](https://fluxcd.io/flux/cmd/flux_push_artifact/)
-
-
-
-
- 
-
-
-
